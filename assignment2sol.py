@@ -46,6 +46,9 @@ class KalmanFilter:
         K = self.P * np.transpose(self.H)  * np.linalg.inv(S)
         self.x=self.x + (K * y)
         self.p=(self.I - (K * self.H)) * self.P
+        self.P[0,0] += 0.1
+        self.P[1,1] += 0.1
+        
         self.v = self.x[1,0]
         self.prev_time = t
         return
